@@ -1,0 +1,72 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+	<meta charset="UTF-8"> 
+	<meta name="viewport" content="width=device-width,initial-scale=1.0"> 
+	<title>VOTE</title>
+  <style>
+  body { 
+	font-family: Arial, sans-serif;background-color:aliceblue;margin: 0;padding: 0;display: flex;justify-content: center;align-items: center;min-height: 100vh; 
+  } 
+  .container { 
+	background: linear-gradient(to bottom,#0078d4, #0056b3);border-radius: 10px;box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);color: #fff;text-align: center;padding: 30px; 
+  } 
+  .poll-question {font-size: 24px;margin-bottom: 20px; color: black;
+  } 
+  .poll-form label {display: block;margin-bottom: 10px;font-size: 18px;color: #fff; 
+  } 
+  .vote-button { 
+	background-color:purple;color: #fff;border: none;padding: 10px 20px;cursor: pointer;font-size: 18px;border-radius: 5px;transition: background-color 0.3s ease-in-out; 
+  } 
+  .vote-button:hover { background-color:purple; 
+  } 
+  .results { margin-top: 20px;padding-top: 20px;border-top: 1px solid rgba(255, 255, 255, 0.3);
+  } 
+  .results-title { font-size: 20px; 
+  } 
+  .results-count {display: flex;justify-content: space-between;font-size: 18px;margin-top: 10px; 
+  } 
+  .count { font-weight: bold; 
+  }
+
+  </style>
+</head> 
+<body> 
+	<div class="container"> 
+		<h1 class="poll-question">Are you interested in web development?</h1> 
+		<form id="poll-form" class="poll-form"> 
+			<label><input type="radio" name="vote" value="yes">Yes</label> 
+      <label><input type="radio" name="vote" value="no">No</label> 
+			<button type="submit" class="vote-button">Vote</button> 
+		</form> 
+		<div id="results" class="results"> 
+			<h2 class="results-title">Results</h2> 
+			<div class="results-count"> 
+				<p>Yes:<span id="yes-count" class="count">0</span></p> 
+				<p>No:<span id="no-count" class="count">0</span></p> 
+			</div> 
+		</div> 
+	</div> 
+</body> 
+<script>
+ document.addEventListener("DOMContentLoaded", function () { 
+	const pollForm = document.getElementById("poll-form"); 
+	const yesCount = document.getElementById("yes-count"); 
+	const noCount = document.getElementById("no-count"); 
+	let yesVotes = 0;let noVotes = 0; 
+  pollForm.addEventListener("submit", function (e) {
+	 e.preventDefault(); 
+	 const formData = new FormData(pollForm); 
+	 const userVote = formData.get("vote"); 
+   if (userVote === "yes") { yesVotes++; 
+	 } else if (userVote === "no") { noVotes++; 
+	 } 
+	 updateResults(); 
+	}); 
+   function updateResults() { 
+		yesCount.textContent = yesVotes; 
+		noCount.textContent = noVotes; 
+	} 
+})
+</script>
+</html>
